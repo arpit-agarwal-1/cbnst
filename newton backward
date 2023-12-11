@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+int fact(int n) {
+int f = 1;
+for (int i = 2; i <= n; i++)
+f *= i;
+return f;
+}
+int main() {
+cout << "input total number of values:";
+int n;
+cin >> n;
+vector<vector<float>> mat(n, vector<float>(n + 1, 0));
+cout << endl
+<< "input values of x:" << endl;
+for (int i = 0; i < n; i++) {
+cin >> mat[i][0];
+}
+cout << endl
+<< "input values of y:" << endl;
+for (int i = 0; i < n; i++) {
+cin >> mat[i][1];
+}
+float y;
+cout << endl
+<< "input value to find:";
+cin >> y;
+cout << endl;
+for (int i = 2; i < n + 1; i++) {
+for (int j = 0; j < n - i + 1; j++)
+mat[j][i] = mat[j + 1][i - 1] - mat[j][i - 1];
+}
+cout << "Interpolation table" << endl;
+cout << setw(4) << "X"
+<< "\t"
+<< " Y"
+<< "\t"
+<< endl;
+for (int i = 0; i < n; i++) {
+cout << setw(4) << mat[i][0]
+<< "\t";
+cout << setw(4) << mat[i][1]
+<< "\t";
+for (int j = 2; j < n - i + 1; j++)
+cout << setw(4) << mat[i][j]
+<< "\t";
+cout << endl;
+printf("\n\nArtham Bhardwaj\tSEC:A\t210211185\tRoll:21\t Newton Forward
+Interpolation\n");
+}
+float sum = mat[n - 1][1];
+float u = (y - mat[n - 1][0]) / (mat[1][0] - mat[0][0]);
+for (int i = 1; i < n; i++) {
+// u series calculation for each i
+float temp = u;
+for (int j = 1; j < i; j++)
+temp = temp * (u + j);
+sum = sum + (temp * mat[n - 1][i + 1]) / fact(i);
+}
+cout << "\n Value at " << y << " is "
+<< sum << endl;
+return 0;
+}
