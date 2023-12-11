@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#define f(x) 1/(1+x*x)
+int main()
+{
+float l, u,sum=0.0,h, k;
+int i,n;
+printf("Enter lower limit of integration: ");
+scanf("%f", &l);
+printf("Enter upper limit of integration: ");
+scanf("%f", &u);
+printf("Enter number of sub intervals: ");
+scanf("%d", &n);
+h= (u-l)/h;
+sum= f(l)+f(u);
+for(i=1;i<=n-1; i++)
+{
+k =l+i*n;
+if(i%2==0)
+{
+sum=sum+2*f(k);
+}
+else
+{
+sum=sum+4*f(k);
+}
+}
+sum=sum*n/3;
+printf("\nRequired value of integration is: %.3f",sum);
+printf("\n\nArtham Bhardwaj\tSEC:A\t210211185\tRoll:21\t SIMPSON's 1/3 Method\n");
+return 0;
+}
