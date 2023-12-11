@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+// Consider a differential equation
+// dy/dx=1+(y/x); 1<=x<=3
+float func(float x, float y)
+{
+return 1+(y/x);
+}
+// Function for Euler formula
+void euler(float x0, float y, float h, float x)
+{
+float temp = 0;
+// Iterating till the point at which we
+// need approximation
+while (x0 < x) {
+temp = y;
+y = y + h * func(x0, y);
+x0 = x0 + h;
+cout<<"y: "<<y<<" x: "<<x0<<endl;
+}
+}
+// Driver program
+int main()
+{
+// Initial Values
+float x0 = 1;
+float y0 = 1;
+float h = 1;
+// Value of x at which we need approximation
+float x = 3;
+euler(x0, y0, h, x);
+return 0;
+}
